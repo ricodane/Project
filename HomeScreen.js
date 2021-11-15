@@ -1,0 +1,111 @@
+import React, { useState } from "react";
+import {
+	View,
+	Text,
+	FlatList,
+	StyleSheet,
+	SafeAreaView,
+	Dimensions,
+	StatusBar,
+} from "react-native";
+import { Image } from "react-native";
+
+const SPACING = 20;
+const { width, height } = Dimensions.get("screen");
+
+const HomeScreen = () => {
+	const [list, setList] = useState([
+		{
+			headertext: "nauna",
+			title: "Sinugbuanong Binisaya \nAlpabeto",
+			description: "Mga alpabeto \nsa Sinugbuanong Binisaya",
+			credits: "credits to APK Premier",
+			id: 1,
+			image: require("../pictures/credits.png"),
+		},
+		{
+			headertext: "kaduha",
+			title: "Pulong sa Sinugbuanong \nBinisaya",
+			description: "Mga pananglitan na pulong \nsa Sinugbuanong Binisaya",
+			credits: "credits to HuntersWoodsPH",
+			id: 2,
+			image: require("../pictures/terms.jpg"),
+		},
+	]);
+
+	return (
+		<SafeAreaView>
+			<FlatList
+				keyExtractor={(item) => item.id}
+				data={list}
+				contentContainerStyle={{
+					padding: SPACING / 2,
+					paddingTop: StatusBar.currentHeight || 42,
+				}}
+				renderItem={({ item, index }) => {
+					return (
+						<View
+							style={{
+								flexDirection: "row",
+								padding: SPACING,
+								marginBottom: SPACING,
+								backgroundColor: "rgba(255, 255, 255, 0.8)",
+								borderRadius: 26,
+								shadowColor: "#000",
+								shadowOffset: {
+									width: 0,
+									height: 10,
+								},
+								shadowOpacity: 0.3,
+								shadowRadius: 20,
+							}}
+						>
+							<Image
+								source={item.image}
+								style={{
+									width: 90,
+									height: 90,
+									marginRight: SPACING / 2,
+								}}
+							/>
+							<View
+								style={{
+									flex: 1,
+									flexDirection: "column",
+									height: 100,
+								}}
+							>
+								<Text
+									style={{
+										fontSize: 17,
+										fontWeight: "700",
+										color: "black",
+									}}
+								>
+									{item.title}
+								</Text>
+								<Text style={{ fontSize: 16, opacity: 0.6 }}>
+									{item.description}
+								</Text>
+								<Text
+									style={{
+										fontSize: 14,
+										opacity: 0.5,
+										color: "#0099cc",
+										paddingLeft: 20,
+									}}
+								>
+									{item.credits}
+								</Text>
+							</View>
+						</View>
+					);
+				}}
+			/>
+		</SafeAreaView>
+	);
+};
+
+const styles = StyleSheet.create({});
+
+export default HomeScreen;
