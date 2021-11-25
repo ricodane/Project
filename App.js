@@ -1,15 +1,16 @@
-/* eslint-disable prettier/prettier */
 import React from "react";
 import "react-native-gesture-handler";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeScreen from "./screens/HomeScreen";
-import CameraScreen from "./screens/CameraScreen";
-import GalleryScreen from "./screens/GalleryScreen";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { LinearGradient } from "expo-linear-gradient";
+
+import {
+	FirstScreenNavigator,
+	SecondScreenNavigator,
+	ThirdScreenNavigator,
+} from "./screens/CustomNavigation";
 
 const dark = "#ff4c98";
 const light = "#f8c907";
@@ -25,10 +26,13 @@ const App = () => {
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
 	return (
-		<Tab.Navigator tabBar={(props) => <MyTabBar {...props} />}>
-			<Tab.Screen name="Home" component={HomeScreen} />
-			<Tab.Screen name="Camera" component={CameraScreen} />
-			<Tab.Screen name="Gallery" component={GalleryScreen} />
+		<Tab.Navigator
+			screenOptions={{ headerShown: false }}
+			tabBar={(props) => <MyTabBar {...props} />}
+		>
+			<Tab.Screen name="Home" component={FirstScreenNavigator} />
+			<Tab.Screen name="Camera" component={SecondScreenNavigator} />
+			<Tab.Screen name="Gallery" component={ThirdScreenNavigator} />
 		</Tab.Navigator>
 	);
 };

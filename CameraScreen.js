@@ -19,7 +19,7 @@ const CameraScreen = () => {
 		return <View />;
 	}
 	if (hasPermission === false) {
-		return <Text>No access to camera</Text>;
+		return alert("You have not granted permission to open Camera.");
 	}
 
 	return (
